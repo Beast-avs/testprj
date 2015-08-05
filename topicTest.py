@@ -4,6 +4,7 @@ Test of Topic class with related Question and Exercise
 
 from topic import Topic
 from exercise import Exercise
+from topicSet import TopicSet
 import json 
 
 print "Test for Topic..."
@@ -29,4 +30,6 @@ mainTopic.addExercise(ex0).addExercise(ex1).addExercise(ex2).addExercise(ex3)
 mainTopic.addExercise(ex4).addExercise(ex5).addExercise(ex6).addExercise(ex7)
 
 
-print json.dumps(mainTopic, default=lambda o: o.__dict__,sort_keys=True, indent=4)
+#print json.dumps(mainTopic, default=lambda o: o.__dict__,sort_keys=True, indent=4)
+#ts = TopicSet().addTopic(mainTopic).saveToFile()
+ts = TopicSet().addTopic(mainTopic).openFromFile()
