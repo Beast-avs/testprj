@@ -8,6 +8,7 @@ class Question:
     answers = None
     
     def __init__(self, description, answers, answerWeights):
+        self.answerWeights = []
         self.description = description
         self.answers = self.validateAnswerAssignments(answers, answerWeights)
         
@@ -19,13 +20,8 @@ class Question:
         return sum/len(self.answers)
     
     def validateAnswerAssignments(self, answers, answerWeights):
-        answersAssigned = None
-        for i in xrange(0, len(answers)-1):
-            self.answerWeights.append(float(answerWeights[i]))
-        return answers
+        self.answerWeights = map (lambda x: float(x), answerWeights[0:len(answers)])
+        self.answerWeights[len(answerWeights):] = [float(0)]*(len(answers)-len(answerWeights))
+
+        return map(lambda x: str(x), answers)
     
-    def __str__(self):
-        return ("Question instance has attributes:"
-        "\n\tdescription: " + str(self.description) +
-        "\n\tanswerWeights[" + str(self.answerWeights) + "]"
-        "\n\tanswers[" + str(self.answers) + "]")
